@@ -37,6 +37,7 @@ namespace NerdStore.WebApp.Tests
 
             _testsFixture.GerarUserSenha();
 
+            //Simulando os dados do formulário de cadastro através de uma estrutura chave valor
             var formData = new Dictionary<string, string>
             {
                 { _testsFixture.AntiForgeryFieldName, antiForgeryToken },
@@ -45,12 +46,15 @@ namespace NerdStore.WebApp.Tests
                 {"Input.ConfirmPassword", _testsFixture.UsuarioSenha }
             };
 
+            //Configurando o post para a URL
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "/Identity/Account/Register")
             {
+                //passando os dados do formulário no post
                 Content = new FormUrlEncodedContent(formData)
             };
 
             // Act
+            //Enviando o post através do método SendAsync
             var postResponse = await _testsFixture.Client.SendAsync(postRequest);
 
             // Assert
