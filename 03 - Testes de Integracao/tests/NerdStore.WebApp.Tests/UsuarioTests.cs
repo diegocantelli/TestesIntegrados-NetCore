@@ -33,6 +33,7 @@ namespace NerdStore.WebApp.Tests
             //EnsureSuccessStatusCode -> Garante que o retorno da requisição seja 200, caso contrário lança uma exceção
             initialResponse.EnsureSuccessStatusCode();
 
+            //ObterAntiForgeryToken -> método que retorna o token que será necessário ao enviar um post e retornar 200
             var antiForgeryToken = _testsFixture.ObterAntiForgeryToken(await initialResponse.Content.ReadAsStringAsync());
 
             _testsFixture.GerarUserSenha();
@@ -40,7 +41,9 @@ namespace NerdStore.WebApp.Tests
             //Simulando os dados do formulário de cadastro através de uma estrutura chave valor
             var formData = new Dictionary<string, string>
             {
+                //passando o token no dicionário
                 { _testsFixture.AntiForgeryFieldName, antiForgeryToken },
+
                 {"Input.Email", _testsFixture.UsuarioEmail },
                 {"Input.Password", _testsFixture.UsuarioSenha },
                 {"Input.ConfirmPassword", _testsFixture.UsuarioSenha }
