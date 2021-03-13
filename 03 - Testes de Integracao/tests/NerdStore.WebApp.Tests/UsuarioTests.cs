@@ -9,6 +9,8 @@ using Xunit;
 namespace NerdStore.WebApp.Tests
 {
     [TestCaseOrderer("Features.Tests.PriorityOrderer", "Features.Tests")]
+
+    //Necessário usar esta collection para poder ser injetada as dependências corretamente
     [Collection(nameof(IntegrationWebTestsFixtureCollection))]
     public class UsuarioTests
     {
