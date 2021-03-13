@@ -58,8 +58,10 @@ namespace NerdStore.WebApp.Tests
             var postResponse = await _testsFixture.Client.SendAsync(postRequest);
 
             // Assert
+            //postResponse.Content.ReadAsStringAsync() -> retornando o conteúdo do response em formato string
             var responseString = await postResponse.Content.ReadAsStringAsync();
 
+            //garantindo que o response tenha retornado com sucesso - 200
             postResponse.EnsureSuccessStatusCode();
             Assert.Contains($"Hello {_testsFixture.UsuarioEmail}!", responseString);
         }
