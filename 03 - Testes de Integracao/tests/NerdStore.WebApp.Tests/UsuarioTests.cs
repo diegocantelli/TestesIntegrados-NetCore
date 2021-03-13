@@ -36,6 +36,8 @@ namespace NerdStore.WebApp.Tests
             //ObterAntiForgeryToken -> método que retorna o token que será necessário ao enviar um post e retornar 200
             var antiForgeryToken = _testsFixture.ObterAntiForgeryToken(await initialResponse.Content.ReadAsStringAsync());
 
+            //Metodo que gera usuário e senha randomicamente, para não dar problema de usuário já cadastrado
+            // ao efetuar os testes
             _testsFixture.GerarUserSenha();
 
             //Simulando os dados do formulário de cadastro através de uma estrutura chave valor
