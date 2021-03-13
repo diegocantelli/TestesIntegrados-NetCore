@@ -63,6 +63,8 @@ namespace NerdStore.WebApp.Tests
 
             //garantindo que o response tenha retornado com sucesso - 200
             postResponse.EnsureSuccessStatusCode();
+
+            //Validando se na string retornada no post há o email informado pelo usuário
             Assert.Contains($"Hello {_testsFixture.UsuarioEmail}!", responseString);
         }
 
