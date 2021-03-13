@@ -25,7 +25,10 @@ namespace NerdStore.WebApp.Tests
         public async Task Usuario_RealizarCadastro_DeveExecutarComSucesso()
         {
             // Arrange
+            //GetAsync -> Faz uma chamada assíncrona para a URL passada no parâmetro
             var initialResponse = await _testsFixture.Client.GetAsync("/Identity/Account/Register");
+
+            //EnsureSuccessStatusCode -> Garante que o retorno da requisição seja 200, caso contrário lança uma exceção
             initialResponse.EnsureSuccessStatusCode();
 
             var antiForgeryToken = _testsFixture.ObterAntiForgeryToken(await initialResponse.Content.ReadAsStringAsync());
