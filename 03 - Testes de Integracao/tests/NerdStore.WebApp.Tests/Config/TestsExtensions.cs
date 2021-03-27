@@ -15,11 +15,14 @@ namespace NerdStore.WebApp.Tests.Config
         public static void AtribuirToken(this HttpClient client, string token)
         {
             client.AtribuirJsonMediaType();
+
+            //Adiciona o token jwt do header da requisição
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
         public static void AtribuirJsonMediaType(this HttpClient client)
         {
+            //limpa os headers do request e adiciona para aceitar json
             client.DefaultRequestHeaders.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
