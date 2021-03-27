@@ -31,10 +31,15 @@ namespace NerdStore.WebApp.Tests
                 Quantidade = 2
             };
 
+            //Faz o post para a url de login para obter o token jwt
             await _testsFixture.RealizarLoginApi();
+
+            //_testsFixture.UsuarioToken -> é o token obtido no passo anterior
             _testsFixture.Client.AtribuirToken(_testsFixture.UsuarioToken);
 
             // Act
+            //PostAsJsonAsync -> Envia um post para o endpoint especificado e já serializa para json o objeto
+            // passado como parâmetro
             var postResponse = await _testsFixture.Client.PostAsJsonAsync("api/carrinho", itemInfo);
 
             // Assert
